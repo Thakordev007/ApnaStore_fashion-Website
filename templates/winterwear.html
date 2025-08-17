@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apna Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #ff9900;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .search-bar button {
+      padding: 0.5rem 0.8rem;
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2c2c3e;
+        margin-top: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .search-bar {
+        margin-top: 1rem;
+        width: 100%;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      row-gap: 120px;
+      padding: 20px;
+      background-color: whitesmoke;
+      position: relative;
+      top: 50px;
+    }
+
+    .box {
+      height: 300px;
+      background-color: white;
+      border-radius: 6px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: column;
+      box-shadow: 0 0 10px black;
+      padding: 10px;
+    }
+
+    .box img {
+      width: 100%;
+      height: 60%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .box div {
+      text-align: center;
+      color: black;
+      font-size: 14px;
+      padding: 5px;
+    }
+
+    .box:hover {
+      transform: scale(1.07);
+      transition: border 0.3s;
+      box-shadow: 0 0 15px cornflowerblue, 0 0 15px cornflowerblue;
+    }
+
+    button {
+      background-color: lightblue;
+      margin-top: 5px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 0 5px;
+    }
+
+    button:hover {
+      background-color: lightgreen;
+    }
+
+    .footer {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-family: Arial, sans-serif;
+      position: relative;
+      top: 150px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-column h3 {
+      border-bottom: 2px solid #555;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        row-gap: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">ApnaStore</div>
+      <div class="nav-toggle" id="mobile-menu">&#9776;</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="{{url_for('home')}}">Home</a></li>
+        <li><a href="#">Items</a></li>
+        <li><a href="#">Deals</a></li>
+        <li><a href="{{url_for('contact')}}">Contact</a></li>
+        <li><a href="{{url_for('cart')}}" id="cart-toggle">Cart 🛒</a></li>
+      </ul>
+   
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="box box1">
+      <img src="static/images/winter1.jpg" alt="Men's Sherwani">
+      <div>
+        <strong>Men's Long jacket</strong><br>
+        ₹1700<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Warm · Designer · Long</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box2">
+      <img src="static/images/winter2.jpg" alt="Pink Blazer">
+      <div>
+        <strong>Winter Coat</strong><br>
+        ₹2800<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Warm · Coat ·Brown</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box3">
+      <img src="static/images/winter3.jpg" alt="Wedding Sherwani">
+      <div>
+        <strong>Winter Combo For Men</strong><br>
+        ₹2700<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Woolen · Warm · Full Set</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box4">
+      <img src="static/images/winter4.jpg" alt="White Jodhpuri Suit">
+      <div>
+        <strong>Men's  Jacket</strong><br>
+        ₹2500<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Elegant · Full Sleeve · Winter-Wear</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box5">
+      <img src="static/images/winter5.jpg" alt="Black Jodhpuri Suit">
+      <div>
+        <strong> Men's Winter T-shirt </strong><br>
+        ₹1800<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Stylish · Full Sleeve · winter Wear</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box6">
+      <img src="static/images/winter6.jpg" alt="Printed Kurta Set">
+      <div>
+        <strong> Women's Jacket</strong><br>
+        ₹1500<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Winter-Wear · Comfortable · Warm</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box7">
+      <img src="static/images/winter7.jpg" alt="Golden Sherwani">
+      <div>
+        <strong>Women's Winter T-shirt</strong><br>
+        ₹1400<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Full-sleeve · Warm · Stylish</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box8">
+      <img src="static/images/winter8.jpg" alt="Velvet Jodhpuri">
+      <div>
+        <strong>Winter T-shirt</strong><br>
+        ₹2500<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Warm · Stylish · Winter Wear</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box9">
+      <img src="static/images/winter9.jpg" alt="Classic Jodhpuri">
+      <div>
+        <strong>Women's Winter-Wear </strong><br>
+        ₹1700<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Stylish · Comfortable · Full-sleeve</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+
+    <div class="box box10">
+      <img src="static/images/winter10.jpg" alt="Designer Sherwani">
+      <div>
+        <strong>Winter Combo for Women</strong><br>
+        ₹2700<br>
+        ApnaStore<br>
+        <span style="color: blue;">Special offer</span><br>
+        <small>Warm · Combo · Stylish</small><br>
+        <button>Add To Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-column">
+      <h3>About Us</h3>
+      <ul>
+        <li><a href="#">Company Info</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Customer Support</h3>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Shipping Info</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Connect With Us</h3>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Contact Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".container button").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const box = e.target.closest(".box");
+        const text = box.querySelector("div").innerText.replace(/\n/g, ' ');
+        const match = text.match(/(.*)₹(\d+)/);
+        if (!match) return;
+
+        const name = match[1].trim();
+        const price = parseInt(match[2]);
+
+        const item = { name, price };
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`${item.name} added to cart!`);
+      });
+    });
+  </script>
+</body>
+</html>

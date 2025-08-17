@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+  background-color: #1e1e2f;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #ff9900;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  padding: 0.5rem 0.8rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #2c2c3e;
+    margin-top: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .search-bar {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
+.home img{
+    height: 600px;
+    width: 100%;
+}
+.home h1 {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    background: linear-gradient(rgb(255, 36, 73),rgb(243, 162, 11));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 300%;
+    font-style: italic;
+    filter: drop-shadow(0 0 2px);
+}
+.login{
+    height: 30px;
+    width: 80px;
+    position: absolute;
+    top: 450px;
+    left:50px;
+    font-size: 100%;
+    text-decoration: none;
+    box-shadow: 0 0 5px;
+}
+.signup{
+    height: 30px;
+    width: 80px;
+    position: absolute;
+    text-decoration: none;
+    top: 450px;
+    left:200px;
+    font-size: 100%;
+     box-shadow: 0 0 5px;
+    
+}
+.login :hover{ 
+  cursor: pointer;
+  color:  #ff9900;
+  transition: color 0.3s;
+}  
+.signup :hover{
+  cursor: pointer;
+  color:  #ff9900;
+  transition: color 0.3s;
+}
+.sale{
+height: 40px;
+width: 100%;
+background-color: lightgoldenrodyellow;
+box-shadow: 0 0 10px;
+}
+.sale p{
+  font-size: 200%;
+  color: red;
+  filter: drop-shadow(0 0 10px);
+}
+
+.container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      row-gap: 80px;
+      padding: 20px;
+      background-color: #eaeaea;
+    }
+
+    .box {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 6px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 0 20px;
+    }
+    .container p{
+      position: relative;
+      top: 130px;
+      color: brown;
+      
+    }
+    .box1 { background-image: url('static/images/menhomepage.jpeg'); }
+    .box2 { background-image: url('static/images/mt2.jpeg'); }
+    .box3 { background-image: url('static/images/mt3.jpeg'); }
+    .box4 { background-image: url('static/images/mt4.jpeg'); }
+    .box5 { background-image: url('static/images/traditionalhomepage.jpeg'); }
+    .box6 { background-image: url('static/images/mt6.jpeg'); }
+    .box7 { background-image: url('static/images/mt7.jpeg'); }
+    .box8 { background-image: url('static/images/mt8.jpeg'); }
+
+
+    .box:hover {
+      transform: scale(1.07);
+      box-shadow:0 0 15px black,  0 0 15px black inset;
+   }
+    .footer {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-family: Arial, sans-serif;
+      position: relative;
+      top: 80px;
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-column h3 {
+      border-bottom: 2px solid #555;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+    
+    

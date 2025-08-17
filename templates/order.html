@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .confirmation-message {
+      text-align: center;
+    }
+
+    .order-summary {
+      background-color: #f2f2f2;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    ul.cart-items {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.cart-items li {
+      padding: 5px 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    ul.cart-items li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Order Form</h1>
+    <form id="orderForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" pattern="[0-9]{10}" required />
+
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" rows="3" required></textarea>
+
+      <label for="delivery">Delivery Type:</label>
+      <select id="delivery" required>
+        <option value="Standard">Standard (3-5 days)</option>
+        <option value="Express">Express (1-2 days)</option>
+      </select>
+
+      <label for="payment">Payment Method:</label>
+      <select id="payment" required>
+        <option value="">-- Select Payment Method --</option>
+        <option value="COD">Cash on Delivery</option>
+        <option value="Card">Credit/Debit Card</option>
+        <option value="UPI">UPI</option>
+        <option value="NetBanking">Net Banking</option>
+      </select>
+
+      <label for="notes">Additional Notes (optional):</label>
+      <textarea id="notes" rows="2" placeholder="Any specific instructions..."></textarea>
+
+      <button type="submit">Submit Order</button>
+    </form>
+
+    <div id="confirmation" class="hidden">
+      <h2>Order Submitted!</h2>
+      <div class="confirmation-message">
+        <p>Thank you, <span id="customerName"></span>. Your order has been placed.</p>
+      </div>
+
+      <div class="order-summary" id="orderSummary"></div>
+
+      <h3>Items Ordered:</h3>
+      <ul id="cartItemsList" class="cart-items"></ul>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("orderForm");
+    const confirmation = document.getElementById("confirmation");
+    const customerNameSpan = document.getElementById("customerName");
+    const orderSummary = document.getElementById("orderSummary");
+    const cartItemsList = document.getElementById("cartItemsList");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const contact = document.getElementById("contact").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const payment = document.getElementById("payment").value;
+      const delivery = document.getElementById("delivery").value;
+      const notes = document.getElementById("notes").value.trim();
+
+      if (!name || !email || contact.length !== 10 || !address || !payment || !delivery) {
+        alert("Please fill out all required fields correctly.");
+        return;
+      }
+
+      customerNameSpan.textContent = name;
+
+      
+      orderSummary.innerHTML = `
+        <strong>Order Summary:</strong><br>
+        Name: ${name}<br>
+        Email: ${email}<br>
+        Contact: ${contact}<br>
+        Address: ${address}<br>
+        Delivery: ${delivery}<br>
+        Payment Method: ${payment}<br>
+        Notes: ${notes ? notes : 'None'}
+      `;
+
+     
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        cartItemsList.innerHTML = "<li>No items found in cart.</li>";
+      } else {
+        cartItemsList.innerHTML = "";
+        cart.forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = `${item.name} — ₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity}`;
+          cartItemsList.appendChild(li);
+        });
+      }
+
+      
+      localStorage.removeItem('cart');
+
+      form.classList.add("hidden");
+      confirmation.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>

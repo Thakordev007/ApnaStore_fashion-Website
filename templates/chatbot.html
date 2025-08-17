@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Bot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      background: #fff;
+      width: 100%;
+      max-width: 400px;
+      height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 15px;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msg {
+      margin: 6px 0;
+      padding: 10px 14px;
+      border-radius: 20px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #dcf8c6;
+      color: #000;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #f1f0f0;
+    }
+
+    .input-box {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .input-box input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .input-box button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .input-box button:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .chat-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Apna Dost 🤖</div>
+    <div class="chat-box" id="chatBox">
+      <div class="msg bot">Hi! 👋 Welcome to ApnaStore. How can I Help you today?</div>
+    </div>
+    <div class="input-box">
+      <input type="text" id="userInput" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const userText = input.value.trim();
+
+      if (!userText) return;
+
+      appendMessage(userText, "user");
+
+      const response = getBotResponse(userText.toLowerCase());
+      setTimeout(() => appendMessage(response, "bot"), 600);
+
+      input.value = "";
+    }
+
+    function appendMessage(text, sender) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `msg ${sender}`;
+      msgDiv.innerText = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+      
+      if (input.includes("hello") || input.includes("hi")) {
+        return "Hello! 😊 How can I help you today?";
+      }
+
+      if (input.includes("about") || input.includes("shopsmart")) {
+        return "ApnaStore is your all-in-one online store for Mem's , Women's, Kids Collection and more!";
+      }
+
+      if (input.includes(" products") || input.includes("items")) {
+        return "We offer Latest Fashion , Stylish Clothes And Unique  Clothes Collection";
+      }
+
+      if (input.includes("shipping")) {
+        return "Shipping is free on orders .. 🚚 Delivery usually takes 3-5 business days.";
+      }
+
+      if (input.includes("return")) {
+        return "We accept returns within 15 days of delivery. Visit your orders page to start a return.";
+      }
+
+      if (input.includes("track") || input.includes("order")) {
+        return "To track your order, go to your Apnastore account > Orders > Track.";
+      }
+
+      if (input.includes("support") || input.includes("help")) {
+        return "You can contact our support at supportapnastore@gmail.com or use the Help Or Contact Us section.";
+      }
+
+      if (input.includes("payment") || input.includes("pay")) {
+        return "We accept Visa, MasterCard, UPI, and PayPal. All transactions are secure 🔒.";
+      }
+
+      return "I'm sorry, I didn't understand that. Can you rephrase or ask something else?";
+    }
+
+
+    document.getElementById("userInput").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>
+
+
+ 
+
+
+

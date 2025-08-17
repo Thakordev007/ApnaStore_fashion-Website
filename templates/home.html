@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apna Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  background-color: #1e1e2f;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #ff9900;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-bar input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  padding: 0.5rem 0.8rem;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #2c2c3e;
+    margin-top: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .search-bar {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
+
+.home {
+  position: relative;
+}
+
+.home img {
+  width: 100%;
+  height: auto;
+}
+
+.home h1 {
+  position: absolute;
+  top: 200px;
+  left: 40px;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
+  font-weight: bold;
+  z-index: 2;
+  line-height: 1.3;
+}
+
+.signup {
+  height: 40px;
+  width: 120px;
+  position: absolute;
+  top: 400px;
+  left: 50px;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.signup a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.signup:hover {
+  background-color: #e67e00;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+  .home h1 {
+    top: 150px;
+    left: 20px;
+    font-size: 2.2rem;
+  }
+
+  .signup {
+    top: 300px;
+    left: 20px;
+    width: 110px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .home h1 {
+    top: 120px;
+    left: 15px;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .signup {
+    top: 250px;
+    left: 15px;
+    width: 100px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+}
+
+.sale {
+  height: 50px;
+  width: 100%;
+  background: linear-gradient(to right, #fffacd, #ffdead);
+  border-top: 2px solid #f90;
+  border-bottom: 2px solid #f90;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.sale p {
+  font-size: 1.5rem;
+  color: red;
+  text-align: center;
+  line-height: 50px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.brands {
+  background-color: #f3f3f3;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.brands h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.brand-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.brand-box {
+  background: linear-gradient(to bottom right, #f0f8ff, #dbefff);
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.brand-box img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.brand-box p {
+  font-weight: bold;
+  color: #444;
+}
+
+.brand-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+}
+
+@media (max-width: 992px) {
+  .brand-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .brand-box img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 40px 20px;
+  background-color: #eaeaea;
+}
+
+.item-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+}
+
+.item-box img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.item-box p {
+  font-weight: bold;
+  color: #333;
+  font-size: 1.1rem;
+  padding: 15px 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.footer {
+  background: linear-gradient(to right, #1e1e2f, #2a2a40);
+  color: #ccc;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+}
+
+.footer-column h3 {
+  border-bottom: 2px solid #555;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: #ff9900;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #fff;
+  text-shadow: 0 0 3px #ff9900;
+}
+
+.chatbot button {
+  background-color: #ff9900;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chatbot button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff9900;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">ApnaStore</div>
+      <div class="nav-toggle" id="mobile-menu">&#9776;</div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="">Home</a></li>
+        <li><a href="#item">Items</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{url_for('cart')}}">Cart 🛒</a></li>
+        <li><a href="{{url_for('dashboard')}}">Profile</a></li>
+      </ul>
+
+      <div class="chatbot">
+        <a href="{{url_for('chatbot')}}"><button>Ask me 🤖</button></a>
+      </div>
+
+      <form action="/search" method="post">
+        <div class="search-bar">
+          <input type="text" name="query" placeholder="Search products..." />
+          <button>Search</button>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <div class="home">
+    <img src="static/images/homepage.png">
+    <h1>Get Up To 30% Off<br> New Arrivals.....</h1>
+    <button class="signup"><a href="{{url_for('signup')}}">Sign Up</a></button>
+  </div>
+
+  <div class="sale">
+    <marquee><p>SALE ..... SALE ..... 50% OFF .... GET 50-60% OFF ON ANY ITEM</p></marquee>
+  </div>
+
+  <section class="brands">
+    <h2>Popular Brands </h2>
+    <div class="brand-container">
+      <div class="brand-box"><img src="static/images/nike.png" alt="Nike"><p>Nike</p></div>
+      <div class="brand-box"><img src="static/images/adidas.png" alt="Adidas"><p>Adidas</p></div>
+      <div class="brand-box"><img src="static/images/pentaloons.png" alt="Pantaloons"><p>Pantaloons</p></div>
+      <div class="brand-box"><img src="static/images/levis.png" alt="Levi's"><p>Levi's</p></div>
+      <div class="brand-box"><img src="static/images/puma.png" alt="Puma"><p>Puma</p></div>
+      <div class="brand-box"><img src="static/images/zara.png" alt="Zara"><p>Zara</p></div>
+    </div>
+  </section>
+
+<section id="item">
+  <div class="container">
+    <div class="item-box">
+      <a href="{{url_for('mens')}}">
+        <img src="static/images/menhomepage.jpg" alt="Men">
+        <p>Men's Collections</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('girl')}}">
+        <img src="static/images/womenhomepage2.jpeg" alt="Women">
+        <p>Women's Collections</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('kids')}}">
+        <img src="static/images/kidshomepage.jpg" alt="Kids">
+        <p>Kid's Collections</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('watch')}}">
+        <img src="static/images/watch.jpg" alt="Watch">
+        <p>Watch & Sunglasses</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('shooes')}}">
+        <img src="static/images/shooes.jpg" alt="Shoes">
+        <p>Shoes Collections</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('traditional')}}">
+        <img src="static/images/traditionalhomepage.jpeg" alt="Men Traditional">
+        <p>Men's Traditional</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('wedding')}}">
+        <img src="static/images/womentraditionalpage.jpg" alt="Women Traditional">
+        <p>Women's Traditional</p>
+      </a>
+    </div>
+    <div class="item-box">
+      <a href="{{url_for('winterwear')}}">
+        <img src="static/images/winterhomepage.jpg" alt="Winter">
+        <p>Winter Wear</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <section id="about">
+    <footer class="footer">
+      <div class="footer-column">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">Company Info</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Customer Support</h3>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Track Your Order</a></li>
+          <li><a href="#">Returns & Refunds</a></li>
+          <li><a href="#">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Connect With Us</h3>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Contact Email</a></li>
+        </ul>
+      </div>
+    </footer>
+  </section>
+
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
