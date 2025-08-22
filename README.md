@@ -6,7 +6,8 @@
 - 👕 Men’s, Women’s, Kids & More categories  
 - 🔍 Working search bar  
 - 🔑 Login & Signup system (MySQL + SQLAlchemy)  
-- 🛒 Add to cart & product management  
+- 🛒 Add to cart & product management
+- 🤖 Mini AI ChatBot Helps To find Information About Apnastore
 - 📱 Responsive design with HTML & CSS  
 
 # 🛠️ Tech Stack
