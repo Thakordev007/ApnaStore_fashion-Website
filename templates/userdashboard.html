@@ -12,12 +12,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 1rem;
     }
 
     .dashboard {
       width: 100%;
-      max-width: 420px;
+      max-width: 460px;
       background: #fff;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -130,11 +131,11 @@
       <div class="usermobile">{{ mobile }}</div>
 
       <ul class="menu">
-        <li>🛍️ <span>Order History</span></li>
-        <li>💖 <span>Wishlist</span></li>
-        <li>👗 <span>Saved Outfits</span></li>
-        <li>🎨 <span>Style Preferences</span></li>
-        <li>⚙️ <span>Edit Profile</span></li>
+        <li><span>🛍️</span><span>Order History</span></li>
+        <li><span>💖</span><span>Wishlist</span></li>
+        <li><span>👗</span><span>Saved Outfits</span></li>
+        <li><span>🎨</span><span>Style Preferences</span></li>
+        <li><span>⚙️</span><span>Edit Profile</span></li>
       </ul>
 
       <a href="{{ url_for('logout') }}">
