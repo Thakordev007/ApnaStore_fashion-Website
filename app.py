@@ -28,17 +28,29 @@ class User(db.Model):
 
 
 
-# Search bar
-category = {
-    'men': 'mens.html',
-    'women': 'girl.html',
-    'kids': 'kids.html',
-    'shoes': 'shooes.html',
-    'toys': 'toys.html',
-    'traditionalmen': 'traditional men.html',
-    'traditionalwomen': 'traditional women.html',
-    'watch': 'watch.html',
-    'sunglasses': 'watch.html',
+# Search bar (keyword -> endpoint)
+search_routes = {
+    "men": "mens",
+    "mens": "mens",
+    "women": "girl",
+    "woman": "girl",
+    "girls": "girl",
+    "kids": "kids",
+    "kid": "kids",
+    "children": "kids",
+    "shoes": "shooes",
+    "shoe": "shooes",
+    "shooes": "shooes",
+    "traditional men": "traditional",
+    "traditionalmen": "traditional",
+    "traditional women": "wedding",
+    "traditionalwomen": "wedding",
+    "wedding": "wedding",
+    "watch": "watch",
+    "watches": "watch",
+    "sunglasses": "watch",
+    "winter": "winterwear",
+    "winterwear": "winterwear",
 }
 
 # Routes
@@ -175,20 +187,24 @@ def contact():
 #Search  bar
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.form.get('query', '').lower().strip()
-    words = query.split()  
+    query = request.form.get("query", "").lower().strip()
+    if not query:
+        flash("Please enter a product keyword to search.", "warning")
+        return redirect(url_for("home"))
 
-    for cat, filename in category.items():
-        
-        cat_words = cat.lower().split()
-        if all(word in words for word in cat_words):
-            return render_template(filename)
-    
-    return "Sorry! No item found..."
+    if query in search_routes:
+        return redirect(url_for(search_routes[query]))
+
+    for keyword, endpoint in search_routes.items():
+        if keyword in query:
+            return redirect(url_for(endpoint))
+
+    flash("Sorry! No item found for your search.", "warning")
+    return redirect(url_for("home"))
 
 
 # Run File 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=False)
